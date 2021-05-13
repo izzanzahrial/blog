@@ -3,7 +3,7 @@ services:
 
     # Redis
     redis:
-        container_name: redis
+        container_name: redis2
         image: redis:alpine
 
     # Database postgres
@@ -19,10 +19,10 @@ services:
         
     # Django application
     app:
-        container_name: blog
+        container_name: core
         build: .
         volumes: 
-            - .:/django
+            - .:/app
         ports:
             - 8000:8000
         image: app:django
@@ -31,7 +31,7 @@ services:
             - db
     
     celery:
-        container_name: celery
+        container_name: celery2
         restart: always
         build: 
             # where is dockerfile located
@@ -39,7 +39,7 @@ services:
         # in production use [celery -A core worker]
         command: celery -A core worker -l INFO
         volumes: 
-            - .:/django
+            - .:/app
         depends_on: 
             - db
             - redis
