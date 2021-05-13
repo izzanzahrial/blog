@@ -5,10 +5,11 @@ docker-compose up
 docker exec -it core[name of the container] /bin/bash
 docker exec -it core[name of the container] sh
 python manage.py startapp blog[name of the app]
+python manage.py migrate
 
 #Run Celery Task
     python manage.py shell
-    from newapp.tasks import add
+    from blog.tasks import add
     add.delay(2, 2)
 
 Info:
