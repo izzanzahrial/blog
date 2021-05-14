@@ -6,6 +6,8 @@ docker exec -it core[name of the container] /bin/bash
 docker exec -it core[name of the container] sh
 python manage.py startapp blog[name of the app]
 python manage.py migrate
+flower -A core[name of directory that celery located] --port=5555
+celery -A core beat -l INFO
 
 #Run Celery Task
     python manage.py shell

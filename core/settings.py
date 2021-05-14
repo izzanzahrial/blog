@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_beat',
     'blog',
 ]
 
@@ -126,3 +127,11 @@ STATIC_URL = '/static/'
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "blog.tasks.add",
+        "schedule": 10.0,
+        "args": (10,5),
+    },
+}
