@@ -7,3 +7,5 @@ redis==3.5
 celery==4.4.7
 flower==0.9.7
 django-celery-beat==2.2.0
+requests==2.25.1
+djangorestframework==3.12.4

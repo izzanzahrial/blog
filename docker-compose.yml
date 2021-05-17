@@ -55,7 +55,7 @@ services:
             - app
 
     celery-beat:
-        container_name: celery2_eat
+        container_name: celery2_beat
         build:
             context: .
         command: celery -A core beat -l INFO

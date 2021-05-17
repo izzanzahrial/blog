@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_celery_beat',
+    'rest_framework',
     'blog',
 ]
 
@@ -128,10 +130,13 @@ STATIC_URL = '/static/'
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
+URL = "https://api.github.com/users/izzanzahrial/repos"
+URL_POST_REQUEST = "http://portofolio:8000/api/repository/"
+
 CELERY_BEAT_SCHEDULE = {
     "scheduled_task": {
-        "task": "blog.tasks.add",
-        "schedule": 10.0,
-        "args": (10,5),
+        "task": "blog.tasks.getRepo",
+        "schedule": crontab(minute=0, day_of_week=0),
+        "args": (URL, URL_POST_REQUEST),
     },
 }
