@@ -17,7 +17,7 @@ from django.urls import path
 from .views import BlogPostViewSet, CategoryViewSet
 
 urlpatterns = [
-    path('blog-post/', BlogPostViewSet.as_view(
+    path('blog-post', BlogPostViewSet.as_view(
         {
             'get': 'list',
             'post': 'create',
@@ -30,7 +30,7 @@ urlpatterns = [
             'delete': 'destroy',
         }
     )),
-    path('category/', CategoryViewSet.as_view(
+    path('category', CategoryViewSet.as_view(
         {
             'get': 'list',
             'post': 'create',

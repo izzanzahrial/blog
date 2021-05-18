@@ -17,7 +17,7 @@ from django.urls import path
 from .views import RepositoryViewSet
 
 urlpatterns = [
-    path('repository/', RepositoryViewSet.as_view(
+    path('repository', RepositoryViewSet.as_view(
         {
             'get': 'list',
             'post': 'create',

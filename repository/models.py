@@ -4,7 +4,7 @@ from django.urls import reverse
 
 # Create your models here.
 class Repository(models.Model):
-    repo_id = models.IntegerField(primary_key=True, max_length=255, unique=True)
+    repo_id = models.IntegerField(primary_key=True, unique=True)
     repo_name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     url = models.URLField(max_length=255)
