@@ -14,33 +14,42 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import BlogPostViewSet, CategoryViewSet
+from .views import BlogPostViewSet, CategoryViewSet, BlogPostsView, PostDetailView, CreatePostView #BlogPostView, BlogPostDetailView,
+
+app_name = 'blog'
 
 urlpatterns = [
-    path('blog-post', BlogPostViewSet.as_view(
+    path('api/', BlogPostViewSet.as_view(
         {
             'get': 'list',
             'post': 'create',
         }
     )),
-    path('blog-post/<str:pk>', BlogPostViewSet.as_view(
+    path('api/<str:pk>', BlogPostViewSet.as_view(
         {
             'get': 'retrieve',
             'put': 'update',
             'delete': 'destroy',
         }
     )),
-    path('category', CategoryViewSet.as_view(
+    path('category/api', CategoryViewSet.as_view(
         {
             'get': 'list',
             'post': 'create',
         }
     )),
-    path('category/<str:pk>', CategoryViewSet.as_view(
+    path('category/api/<str:pk>', CategoryViewSet.as_view(
         {
             'get': 'retrieve',
             'put': 'update',
             'delete': 'destroy',
         }
     )),
+    # path('/', BlogPostView.as_view(),),
+    # path('/<str:pk>', BlogPostDetailView.as_view(), name="post-detail"),
+    path('', BlogPostsView, name="blog-posts"),
+
+    path('<slug:post>', PostDetailView, name="post-detail"),
+
+    path('create/', CreatePostView, name="create-post"),
 ]

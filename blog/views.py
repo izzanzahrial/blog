@@ -1,8 +1,14 @@
-from django.shortcuts import render
+from django.http import request
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 from rest_framework import serializers, viewsets, status
 from rest_framework.response import Response
 from .models import BlogPost, Category
 from .serializer import BlogPostSerializer, CategorySerializer
+from .forms import BlogPostForm
+
+import requests
 
 # Create your views here.
 class BlogPostViewSet(viewsets.ViewSet):
@@ -62,3 +68,44 @@ class CategoryViewSet(viewsets.ViewSet):
         category = Category.objects.get(id=pk)
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def BlogPostsView(request):
+
+    all_posts = BlogPost.objects.all()
+
+    return render(request, 'blog_posts.html', {"posts": all_posts})
+
+def PostDetailView(request, post=None):
+    
+    blogDetail = get_object_or_404(BlogPost, slug=post)
+    
+    return render(request, "post_detail.html", {"post": blogDetail})
+
+# Need to add autenthication for security and the URL still error same thing like setting
+def CreatePostView(request, post):
+    
+    url = "http://host.dokcer.internal:8000/blog/api/"
+
+    if request.method == "POST":
+        blog_post = BlogPostForm(request.POST)
+        requests.post(url, data=blog_post)
+        return HttpResponseRedirect('/blog')
+    else:
+        blog_post = BlogPostForm()
+    return render(request, "create_post.html")
+
+    # Without API version
+
+    # if request.method == "POST":                                  
+    #     blog_post = BlogPostForm(request.POST)
+    #     if blog_post.is_valid():
+    #         blog_post.save()
+    #         return HttpResponseRedirect('/' + blog_post.slug)
+    # else:
+    #     blog_post = BlogPostForm()
+    # return render(request, "create_post.html")
+
+    # recent error : TypeError: CreatePostView() missing 1 required positional argument: 'post'
+
+
+        

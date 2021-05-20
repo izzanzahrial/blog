@@ -12,9 +12,6 @@ class Repository(models.Model):
 
     def __str__(self):
         return self.repo_name + '|' + self.created_date
-    
-    def get_absolute_url(self):
-        return reverse("home")
 
     class Meta:
         ordering = ["created_date"]

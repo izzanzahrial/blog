@@ -132,12 +132,14 @@ CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
 URL = "https://api.github.com/users/izzanzahrial/repos"
-URL_POST_REQUEST = "http://host.dokcer.internal:8000/api/repository"
+
+# Still can't connect to the URL
+URL_POST_REQUEST = "http://host.dokcer.internal:8000/repository/api"
 
 CELERY_BEAT_SCHEDULE = {
     "scheduled_task": {
         "task": "repository.tasks.getRepo",
-        "schedule": 30,
+        "schedule": crontab(minute=0, day_of_week=0),
         "args": (URL, URL_POST_REQUEST),
     },
 }

@@ -1,0 +1,5 @@
+<form id="blog-post-form" method="post">
+    {{ blog_post_form.as_b }}
+    {% csrf_token %}
+    <button type="submit">Submit</button>
+</form>

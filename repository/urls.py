@@ -17,13 +17,13 @@ from django.urls import path
 from .views import RepositoryViewSet
 
 urlpatterns = [
-    path('repository', RepositoryViewSet.as_view(
+    path('repository/api', RepositoryViewSet.as_view(
         {
             'get': 'list',
             'post': 'create',
         }
     )),
-    path('repository/<str:pk>', RepositoryViewSet.as_view(
+    path('repository/api/<str:pk>', RepositoryViewSet.as_view(
         {
             'get': 'retrieve',
             'put': 'update',
