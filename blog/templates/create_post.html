@@ -1,5 +1,7 @@
-<form id="blog-post-form" method="post">
-    {{ blog_post_form.as_b }}
+<h1>Create Post</h1>
+
+<form action="/blog/create-post/" method="POST">
     {% csrf_token %}
+    {{ blog_post_form.as_p }}
     <button type="submit">Submit</button>
 </form>

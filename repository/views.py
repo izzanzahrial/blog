@@ -33,3 +33,10 @@ class RepositoryViewSet(viewsets.ViewSet):
         repository = Repository.objects.get(repo_id=pk)
         repository.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+#need to add template, not done
+# def repositoryView(request):
+
+#     all_repository = Repository.objects.all()
+
+#     return render(request, 'index.html', {"repositories": all_repository})

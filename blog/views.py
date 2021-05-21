@@ -1,3 +1,4 @@
+from core.settings import URL
 from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -69,43 +70,35 @@ class CategoryViewSet(viewsets.ViewSet):
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-def BlogPostsView(request):
+def blogPostsView(request):
 
     all_posts = BlogPost.objects.all()
 
     return render(request, 'blog_posts.html', {"posts": all_posts})
 
-def PostDetailView(request, post=None):
+def postDetailView(request, post=None):
     
     blogDetail = get_object_or_404(BlogPost, slug=post)
     
     return render(request, "post_detail.html", {"post": blogDetail})
 
-# Need to add autenthication for security and the URL still error same thing like setting
-def CreatePostView(request, post):
+def blogPostFormView(request):
     
-    url = "http://host.dokcer.internal:8000/blog/api/"
+    #using API
+    #URL = "http://host.dokcer.internal:8000/repository/api"
 
     if request.method == "POST":
-        blog_post = BlogPostForm(request.POST)
-        requests.post(url, data=blog_post)
-        return HttpResponseRedirect('/blog')
+        blog_post_form = BlogPostForm(request.POST)
+
+        if blog_post_form.is_valid():
+            blog_post = blog_post_form.save()
+            return HttpResponseRedirect('/blog/' + blog_post.slug)
+
+        #using API
+        # requests.post(url=URL, data=blog_post_form)
+        # return HttpResponseRedirect('/blog/')
+
     else:
-        blog_post = BlogPostForm()
-    return render(request, "create_post.html")
-
-    # Without API version
-
-    # if request.method == "POST":                                  
-    #     blog_post = BlogPostForm(request.POST)
-    #     if blog_post.is_valid():
-    #         blog_post.save()
-    #         return HttpResponseRedirect('/' + blog_post.slug)
-    # else:
-    #     blog_post = BlogPostForm()
-    # return render(request, "create_post.html")
-
-    # recent error : TypeError: CreatePostView() missing 1 required positional argument: 'post'
-
-
-        
+        blog_post_form = BlogPostForm()
+    
+    return render(request, 'create_post.html', {'blog_post_form': blog_post_form})
