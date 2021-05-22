@@ -70,6 +70,17 @@ class CategoryViewSet(viewsets.ViewSet):
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class CategoryListView(ListView):
+    template_name = 'category.html'
+    context_object_name = 'categories'
+
+    def get_queryset(self):
+        content = {
+            'category': self.kwargs['category'],
+            'posts': BlogPost.objects.filter(category__name= self.kwargs['category'])
+        }
+        return content
+
 def blogPostsView(request):
 
     all_posts = BlogPost.objects.all()
@@ -102,3 +113,10 @@ def blogPostFormView(request):
         blog_post_form = BlogPostForm()
     
     return render(request, 'create_post.html', {'blog_post_form': blog_post_form})
+
+def categoryList(request):
+    category_list = Category.objects.all()
+    context = {
+        "category_list": category_list,
+    }
+    return context

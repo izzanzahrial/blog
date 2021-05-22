@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1>Create Post</h1>
 
 <form action="/blog/create-post/" method="POST">
@@ -5,3 +9,5 @@
     {{ blog_post_form.as_p }}
     <button type="submit">Submit</button>
 </form>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for post in categories.posts %}
+        <a href="{{ post.get_absolute_url }}">To the post</a><br>
+        {{ post.title }}<br>
+        {{ post.title_tag }}<br>
+        {{ post.post_date }}<br><br>
+    {% endfor %}
+
+{% endblock  %}

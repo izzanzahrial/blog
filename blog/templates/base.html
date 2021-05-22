@@ -1,0 +1,13 @@
+#still not working
+<li>
+    <a hre="#">Category</a>
+    <div>{% for category in categoryList %}
+        <a href="/category/{{ category.name }}">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
+</li>
+{% block content %}
+
+{% endblock  %}
