@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{ post.title }}</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-md-center pt-5">
+            <div class="col-md-8">
+                <div class="col-12">
+                    <h1>{{ post.title }}</h1>
+                </div>
+                <div class="col-12">
+                    <h2>{{ post.title_tag }}</h2>
+                </div>
+                <div class="col-12">
+                    <p>{{ post.body }}</p>
+                </div>
+                <div class="col-12">
+                    <p>{{ post.post_date }}</p>
+                </div>
+                <div class="col-12">
+                    <p>{{ post.category }}</p>
+                </div>
+                <a href={% url 'blog:posts' %}>Back</a>
+                <div class="col-md-12">
+                    {% with comments.count as total_comments %}
+                        <h2>{{ total_comments }} comment{{ total_comments|pluralize }}
+                    {% endwith %}
+                    {% for comment in comments %}
+                        Comment {{ forloop.counter }} by {{ comment.name }}
+                        on {{ comment.publish }}
+                        {{ comment.content|linebreaks }}
+                        {% empty %}
+                        <p>There are no comment for this post</p>
+                    {% endfor %}
+                    
+                    <h2>Make a new comment</h2>
+
+                    <form id="commentForm" method="POST">
+                        {{ comment_form.as_p }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

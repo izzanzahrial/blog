@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Blog Posts</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                {% for post in posts %}
+                    <div class="col-12">
+                        <h1>
+                            <a class="text-dark" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h1>
+                    </div>
+                    <div class="col-12"><p>{{ post.title_tag }}</p></div>
+                    <div class="col-12"><p>{{ post.post_date }}</p></div>
+                    <div class="col-12"><p>{{ post.category }}</p></div>        
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

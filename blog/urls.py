@@ -47,11 +47,11 @@ urlpatterns = [
     )),
     # path('/', BlogPostView.as_view(),),
     # path('/<str:pk>', BlogPostDetailView.as_view(), name="post-detail"),
-    path('', blogPostsView, name="blog-posts"),
+    path('', blogPostsView, name="posts"),
 
-    path('<slug:post>', postDetailView, name="post-detail"),
+    path('<slug:post>', postDetailView, name="post"),
 
-    path('create-post/', blogPostFormView, name="create-post"),
+    path('create/', blogPostFormView, name="create"),
 
     path('category/<category>', CategoryListView.as_view(), name="category"),
 ]

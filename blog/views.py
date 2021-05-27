@@ -5,9 +5,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from rest_framework import serializers, viewsets, status
 from rest_framework.response import Response
-from .models import BlogPost, Category
+from .models import BlogPost, Category, Comment
 from .serializer import BlogPostSerializer, CategorySerializer
-from .forms import BlogPostForm
+from .forms import BlogPostForm, CommentForm
 
 import requests
 
@@ -78,20 +78,36 @@ class CategoryListView(ListView):
         content = {
             'category': self.kwargs['category'],
             'posts': BlogPost.objects.filter(category__name= self.kwargs['category'])
+            #'posts': BlogPost.objects.filter(category__name= self.kwargs['category']).filter(status='published')
         }
         return content
 
 def blogPostsView(request):
 
-    all_posts = BlogPost.objects.all()
+    posts = BlogPost.objects.all()
+    #published_posts = BlogPost.publiished.all()
 
-    return render(request, 'blog_posts.html', {"posts": all_posts})
+    return render(request, 'index.html', {"posts": posts})
 
 def postDetailView(request, post=None):
     
-    blogDetail = get_object_or_404(BlogPost, slug=post)
+    post = get_object_or_404(BlogPost, slug=post)
+    #blogDetail = get_object_or_404(BlogPost, slug=post, status="published")
+
+    comments = Comment.objects.filter(status=True)
+
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return HttpResponseRedirect('/' + post.slug)
+    else:
+        comment_form = CommentForm()
     
-    return render(request, "post_detail.html", {"post": blogDetail})
+    return render(request, "post.html", {"post": post, "comments": comments, "comment_form": comment_form})
 
 def blogPostFormView(request):
     
@@ -112,9 +128,9 @@ def blogPostFormView(request):
     else:
         blog_post_form = BlogPostForm()
     
-    return render(request, 'create_post.html', {'blog_post_form': blog_post_form})
+    return render(request, 'create.html', {'blog_post_form': blog_post_form})
 
-def categoryList(request):
+def category_list(request):
     category_list = Category.objects.all()
     context = {
         "category_list": category_list,
