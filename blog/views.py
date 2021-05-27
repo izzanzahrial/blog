@@ -103,7 +103,7 @@ def postDetailView(request, post=None):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            return HttpResponseRedirect('/' + post.slug)
+            return HttpResponseRedirect('/blog/' + post.slug)
     else:
         comment_form = CommentForm()
     

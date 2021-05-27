@@ -16,7 +16,8 @@
                 <div class="col-md-4">
                     <a href="{{ post.get_absolute_url }}" class="text-dark">
                         <div class="card mb-4 box-shadow">
-                            <img src="#" alt="Card image" class="card-img-top">
+                            <!-- {{ post.image.url }} -->
+                            <img src="" alt="Card image" class="card-img-top">
                             <div class="card-body">
                                 <h2 style="font-size:18px;font-weight:bold">{{ post.title|truncatechars:50 }}</h2>
                                 <p class="card-text">{{ post.body|truncatechars:50 }}</p>

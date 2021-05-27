@@ -32,7 +32,7 @@ class BlogPost(models.Model):
     publiished = Published() #custom manager
 
     def __str__(self):
-        return self.title + '|' + str(self.post_date)
+        return self.title + ' | ' + str(self.post_date)
 
     def get_absolute_url(self):
         return reverse("blog:post", args=[self.slug])

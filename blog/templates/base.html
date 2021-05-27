@@ -35,7 +35,7 @@
                           {% for category in category_list %}
                             <li><a class="dropdown-item" href="/blog/category/{{ category.name }}">{{ category.name|title }}</a></li>
                           {% endfor %}
-                        </ul>
+                        </ul>                    
                       </li>
                     </ul>
                   </div>
@@ -59,12 +59,3 @@
     -->
   </body>
 </html>
-{% comment %} <li>
-    <a hre="#">Category</a>
-    <div>{% for category in categoryList %}
-        <a href="/category/{{ category.name }}">
-            {{ category.name }}
-        </a>
-        {% endfor %}
-    </div>
-</li> {% endcomment %}

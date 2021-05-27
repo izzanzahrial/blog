@@ -5,6 +5,7 @@ from .models import BlogPost, Category, Comment
 @admin.register(BlogPost)
 class Admin(admin.ModelAdmin):
     list_display = ('title', 'status', 'category')
+    prepopulated_fields = {'slug':('title',),}
 
 @admin.register(Comment)
 class Admin(admin.ModelAdmin):
