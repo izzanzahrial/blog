@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block content %}
+    <form method="GET">
+        {{ form.q.as_hidden }}
+    </form>
+
     {% if q %}
         <h1>Posts containing "{{ q }}"</h1>
         <p>
