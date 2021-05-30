@@ -1,3 +1,4 @@
+from django import forms
 from core.settings import URL
 from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -7,7 +8,7 @@ from rest_framework import serializers, viewsets, status
 from rest_framework.response import Response
 from .models import BlogPost, Category, Comment
 from .serializer import BlogPostSerializer, CategorySerializer
-from .forms import BlogPostForm, CommentForm
+from .forms import BlogPostForm, CommentForm, PostSearchForm
 
 import requests
 
@@ -136,3 +137,16 @@ def category_list(request):
         "category_list": category_list,
     }
     return context
+
+def post_search(request):
+    form = PostSearchForm()
+    q = ''
+    results = []
+
+    if 'q' in request.GET:
+        form = PostSearchForm(request.GET)
+        if form.is_valid():
+            q = form.cleaned_data['q']
+            results = BlogPost.objects.filter(title__contains=q)
+        
+    return render(request, 'search.html', {'form': form, 'q':q, 'results':results})
