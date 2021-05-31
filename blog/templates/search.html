@@ -18,9 +18,31 @@
         </p>
     {% endif %}
 
-    {% for post in results %}
-        <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
-    {% empty %}
-        <p>There are no result for your search
-    {% endfor %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for post in results %}
+                    <div class="col-md-4">
+                        <a href="{{ post.get_absolute_url }}" class="text-dark">
+                            <div class="card mb-4 box-shadow">
+                                {% if post.image.url is not None %}
+                                <img src="{{ post.image.url }}" alt="{{ post.title}}" class="card-img-top">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h2 style="font-size:18px; font-weight:bold">{{ post.title|truncatechars:50 }}</h2>
+                                    <p class="card-text">Snippet</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">{{ post.post_date }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>There are no result for your search
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}
