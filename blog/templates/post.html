@@ -11,6 +11,21 @@
             <div class="col-md-8">
                 <div class="col-12">
                     <h1>{{ post.title }}</h1>
+                    {% if request.user.is_authenticated %}
+                        {% if fav %}
+                        <div>
+                            <a href="{% url 'accounts:add_favourite' post.id %}" class="">Remove</a>
+                        </div>
+                        {% else %}
+                        <div>
+                            <a href="{% url 'accounts:add_favourite' post.id %}" class="">Add to favourites</a>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                    <div>
+                        <a href="{% url 'accounts:register' %}" class="">Add to favourites</a>
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="col-12">
                     <h2>{{ post.title_tag }}</h2>

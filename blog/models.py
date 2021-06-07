@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 def media_update(instance, filename):
     return f'posts/{instance.id}/{filename}'
@@ -20,6 +21,7 @@ class BlogPost(models.Model):
 
     status_options = (('draft', 'Draft'), ('published', 'Published'))
 
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=255, unique=True, verbose_name='title')
     title_tag = models.CharField(max_length=255, verbose_name='title tag')
     slug = models.SlugField(max_length=255, null=False)
@@ -27,7 +29,7 @@ class BlogPost(models.Model):
     body = models.TextField(verbose_name='content')
     post_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=status_options, default='draft')
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
+    favourites = models.ManyToManyField(User, related_name='favourite', default=None, blank=None)
     objects = models.Manager()
     publiished = Published() #custom manager
 

@@ -95,6 +95,11 @@ def postDetailView(request, post=None):
     post = get_object_or_404(BlogPost, slug=post)
     #blogDetail = get_object_or_404(BlogPost, slug=post, status="published")
 
+    fav = bool
+    
+    if post.favourites.filter(id=request.user.id).exists():
+        fav = True
+
     comments = Comment.objects.filter(status=True)
 
     if request.method == "POST":
@@ -108,7 +113,7 @@ def postDetailView(request, post=None):
     else:
         comment_form = CommentForm()
     
-    return render(request, "post.html", {"post": post, "comments": comments, "comment_form": comment_form})
+    return render(request, "post.html", {"post": post, "comments": comments, "comment_form": comment_form, "fav":fav})
 
 def blogPostFormView(request):
     

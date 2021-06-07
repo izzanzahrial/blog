@@ -1,0 +1,22 @@
+{% extends '../base/base.html' %}
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+{% block content %}
+{% include 'base/navbar.html' %}
+<div class="container">
+    <section class="jumbotron text-center bg-white">
+        <div class="container">
+            <h1>User Dashboard</h1>
+            <p class="lead text-muted">Something short and leading about the content creator,
+                etc. Make it short and sweet, but not too short.
+            </p>
+            <p>
+                <a href="{% url 'logout' %}" class="btn btn-primary my-2">Logout</a>
+            </p>
+        </div>
+    </section>
+</div>
+
+{% include '../base/footer.html' %}
+{% endblock %}
