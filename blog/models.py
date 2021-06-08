@@ -29,7 +29,9 @@ class BlogPost(models.Model):
     body = models.TextField(verbose_name='content')
     post_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=status_options, default='draft')
-    favourites = models.ManyToManyField(User, related_name='favourite', default=None, blank=None)
+    favourites = models.ManyToManyField(User, related_name='favourite', default=None, blank=True)
+    likes = models.ManyToManyField(User, related_name='likes', default=None, blank=True)
+    like_count = models.BigIntegerField(default='0')
     objects = models.Manager()
     publiished = Published() #custom manager
 

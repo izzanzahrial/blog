@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import delete_user, profile, accounts_registration, activate, edit, add_favourite, favourites_list
+from .views import delete_user, profile, accounts_registration, activate, edit, add_favourite, favourites_list, like
 from .forms import PwdResetConfirmForm, PwdResetForm, UserLoginForm, PasswordChangeForm
 
 app_name = 'accounts'
@@ -29,6 +29,7 @@ urlpatterns = [
     path('profile/edit/', edit, name='edit'),
     path('profile/delete/', delete_user, name='delete_user'),
     path('profile/favourites/', favourites_list, name='favourites_list'),
+    path('like/', like, name='like'),
     path('fav/<int:id>/', add_favourite, name='add_favourite'),
     path('register/', accounts_registration, name='register'),
     path('activate/<slug:uidb64>/<slug:token>/', activate, name='activate'),

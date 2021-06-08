@@ -1,18 +1,60 @@
 from django.contrib.auth import login, tokens
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
+from django.db.models import F
 from .forms import RegistrationForm, UserEditForm, UserProfileForm
 from .token import account_activation_token
 from .models import Profile
 from blog.models import BlogPost
 
 # Create your views here.
+
+# https://docs.djangoproject.com/en/3.1/ref/models/expressions/#f-expressions
+@login_required
+def like(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = int(request.POST.get('postid'))
+        post = get_object_or_404(BlogPost, id=id)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+            post.like_count -= 1
+            result = post.like_count
+            post.save()
+        else:
+            post.likes.add(request.user)
+            post.like_count += 1
+            result = post.like_count
+            post.save()
+    return JsonResponse({'result': result})
+
+# with F expression
+# @login_required
+# def like(request):
+#     if request.POST.get('action') == 'post':
+#         result = ''
+#         id = int(request.POST.get('postid'))
+#         post = get_object_or_404(BlogPost, id=id)
+#         if post.likes.filter(id=request.user.id).exists():
+#             post.likes.remove(request.user)
+#             post.like_count = F('like_count') - 1
+#             result = post.like_count
+#             post.save()
+#         else:
+#             post.likes.add(request.user)
+#             post.like_count = F('like_count') + 1
+#             result = post.like_count
+#             post.save()
+#     return JsonResponse({'result': result})
+
 @login_required
 def favourites_list(request):
     favourites = BlogPost.publiished.filter(favourites=request.user)
