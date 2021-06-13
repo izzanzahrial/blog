@@ -72,7 +72,7 @@ class CategoryViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class CategoryListView(ListView):
-    template_name = 'category.html'
+    template_name = 'blog/category.html'
     context_object_name = 'categories'
 
     def get_queryset(self):
@@ -88,7 +88,7 @@ def blogPostsView(request):
     posts = BlogPost.objects.all()
     #published_posts = BlogPost.publiished.all()
 
-    return render(request, 'index.html', {"posts": posts})
+    return render(request, 'blog/index.html', {"posts": posts})
 
 def postDetailView(request, post=None):
     
@@ -113,7 +113,7 @@ def postDetailView(request, post=None):
     else:
         comment_form = CommentForm()
     
-    return render(request, "post.html", {"post": post, "comments": comments, "comment_form": comment_form, "fav":fav})
+    return render(request, "blog/post.html", {"post": post, "comments": comments, "comment_form": comment_form, "fav":fav})
 
 def blogPostFormView(request):
     
@@ -134,7 +134,7 @@ def blogPostFormView(request):
     else:
         blog_post_form = BlogPostForm()
     
-    return render(request, 'create.html', {'blog_post_form': blog_post_form})
+    return render(request, 'blog/create.html', {'blog_post_form': blog_post_form})
 
 def category_list(request):
     category_list = Category.objects.all()
@@ -154,4 +154,4 @@ def post_search(request):
             q = form.cleaned_data['q']
             results = BlogPost.objects.filter(title__contains=q)
         
-    return render(request, 'search.html', {'form': form, 'q':q, 'results':results})
+    return render(request, 'blog/search.html', {'form': form, 'q':q, 'results':results})

@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Packages
     'django_celery_beat',
     'rest_framework',
+    'admin_honeypot',
 
-    #my apps
+    # My Apps
     'blog',
     'repository',
     'accounts',
