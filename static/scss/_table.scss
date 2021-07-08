@@ -1,0 +1,64 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    color: $white;
+
+    h2 {
+
+        @include breakpoint-down(medium) {
+            text-align: center;
+        }
+
+        @include breakpoint-up(large) {
+            margin-left: 50px;
+        }
+    }
+
+    .container {
+        overflow-x: auto;
+    }
+
+    &__all {
+        border-collapse: collapse;
+        box-shadow: 0 5px 10px $lightGrey;
+        background-color: $black;
+        text-align: center;
+    }
+
+    &__heads {
+        border: 3px solid $lightGrey;   
+    }
+
+    &__head {
+        padding: 1rem 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 0.7rem;
+        font-weight: 900;
+    }   
+
+    table {
+        
+        width: 100%;
+    
+        tr:nth-child(even) {
+            background-color: $lightBlack;
+    
+            a  {
+                background-color: $lightBlack;
+            }
+        }
+
+        td {
+            max-width: 0;
+            overflow: hidden;
+        }
+    
+        p {
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 0.1rem;
+        }
+    }
+}

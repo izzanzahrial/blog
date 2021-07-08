@@ -1,0 +1,50 @@
+.contact {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        text-align: center;
+    }
+
+    &__container {
+        
+        @include breakpoint-up(large){
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__icon {
+        filter: invert(97%) sepia(3%) saturate(4%) hue-rotate(221deg) brightness(115%) contrast(100%);
+    }
+
+    &__text {
+        margin-left: 20px;
+    }
+
+    &__formbox {
+        margin-top: 2.25rem;
+    }
+
+    .field {
+        width: 100%;
+        border: $white;
+        outline: none;
+        background-color: $lightGrey;
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 22px;
+        transition: .3s;
+    }
+}
