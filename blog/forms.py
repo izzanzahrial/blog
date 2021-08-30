@@ -18,9 +18,9 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['name', 'email', 'body']
         widgets = {
-            "name": forms.TextInput(attrs={"class": "col-sm-12"}),
-            "email": forms.EmailInput(attrs={"class": "col-sm-12"}),
-            "body": forms.Textarea(attrs={"class": "form-control"}),
+            "name": forms.TextInput(attrs={"class": "col-sm-12 mb-3"}),
+            "email": forms.EmailInput(attrs={"class": "col-sm-12 mb-3"}),
+            "body": forms.Textarea(attrs={"class": "form-control mb-3"}),
         }
 
 class PostSearchForm(forms.Form):

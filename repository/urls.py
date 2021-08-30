@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import RepositoryViewSet
+from .views import RepositoryViewSet, repositoryView
 
 urlpatterns = [
     path('repository/api', RepositoryViewSet.as_view(
@@ -30,4 +30,5 @@ urlpatterns = [
             'delete': 'destroy',
         }
     )),
+    path('', repositoryView, name="home"),
 ]

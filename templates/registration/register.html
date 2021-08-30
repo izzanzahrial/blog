@@ -1,12 +1,12 @@
 {% extends '../base/base.html' %}
 {% block title %}
-    <title>Login</title>
+    <title>Register</title>
 {% endblock %}
 {% block content %}
 
 {% if request.user.is_authenticated %}
     <script>
-        window.location.href = '{% url "accounts:profile" %}'
+        window.location.href = '{% url "blog:posts" %}'
     </script>
 {% endif %}
 
@@ -17,7 +17,7 @@
     }
 
     .bg-image {
-        background-image: url('https://picsum.photos/id/433/1080');
+        background-image: url('https://picsum.photos/id/444/1080');
         background-size: cover;
         background-position: center center;
     }
@@ -41,7 +41,7 @@
     }
 </style>
 
-<div class="container-fluid">
+<div class="container-fluid" style="color: black">
     <div class="row no-gutter">
         <div class="col-md-6 bg-light">
             <div class="login d-flex align-items-center py-5">
@@ -62,7 +62,7 @@
                                 {% endif %}
                                 {% endfor %}
                                 {% endif %}
-
+                                
                                 <label class="small font-weight-bold">{{ form.username.label }}<span class="text-muted">
                                         (Required)</span></label>
                                 {{ form.username }}
@@ -76,20 +76,20 @@
                                     At least 8 characters and 1 digit
                                 </small>
                                 {{ form.password2 }}
-                                <small class="form-text text-muted mb-4">
-                                    Repeat password
-                                </small>
                                 <button class="btn btn-dark btn-block py-2 mb-4 mt-5 font-weight-bold" type="submit">
                                     Register
                                 </button>
                                 <hr class="mb-3">
-                                <p class="small text-center">By clicking on register, you agree to Blog <a href="">Terms of Service</a>
-                                    and consent to our <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>. This site is not protected by reCAPTCHA
+                                <p class="small text-center">By clicking on register, you agree to Blog <a href="" style="color: black">Terms of Service</a>
+                                    and consent to our <a href="" style="color: black">Cookie Policy</a> and <a href="" style="color: black">Privacy Policy</a>. This site is not protected by reCAPTCHA
                                     and is a personal website.
                                 </p>
                             </form>
                             <p class="small text-center pt-4">
-                                <a href="{% url 'accounts:login' %}">Already have an account?</a>
+                                <a href="" style="color: black">Already have an account?</a>
+                            </p>
+                            <p class="small text-center">
+                                <a href="{% url 'accounts:login' %}" style="color: blue">Login</a>
                             </p>
                         </div>
                     </div>

@@ -1,353 +1,197 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css'%}"/> -->
+{% extends 'base/base.html' %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% block title %}
+  <title>Home</title>
+{% endblock %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../static/css/style.css"/>
+{% block content %}
 
-    <!-- {% block title %}
-    
-    {% endblock %} -->
-    
-  </head>
-  <body>
-    <!-- {% block content %}
-    {% endblock  %} -->
-    <!-- <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              <img src="../../static/images/logo.svg" alt="Home">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                        </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Coding</a></li>
-                    </ul>
-                    </li>
-                </ul>
-                <form class="d-flex" method="GET" action="#">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Izzanzahrial
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="#">Edit Details</a></li>
-                        <li><a class="dropdown-item" href="#">Favourites Posts</a></li>
-                        <li><a class="dropdown-item" href="#">Change Password</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                    </ul>
-                </li> -->
-                <!-- <nav> Keep this on comment
-                    <a class="p-2 text-dark" href="#">Register</a>
-                    <a class="p-2 text-dark" href="#">Login</a>
-                </nav> -->
-            <!-- </div>
-        </div>
-    </nav>
-  </header> -->
+{% include 'base/header.html' %}
 
-  <header class="header">
-    <div class="overlay has-fade"></div>
+{% load static %}
 
-    <nav class="container container--pall flex flex-jc-sb flex-ai-c">
-      <a class="header__logo" href="#">
-        <img src="../../static/images/logo.svg" alt="Home">
-      </a>
-
-      <a id="btnHamburger" href="#" class="header__toggle hide-for-desktop">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-
-      <div class="header__links hide-for-mobile">
-        <a href="#">Home</a>
-        <a href="#">Blog</a>
-        <a href="#">Category</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-
-      <a href="#" class="button hide-for-mobile">Search</a>
-    </nav>
-
-    <div class="header__menu has-fade">
-      <a href="#">Home</a>
-      <a href="#">Blog</a>
-      <a href="#">Category</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+<section class="hero" id="about">
+  <div class="container">
+    <div class="hero__image container container--pall">
+      <img src="../../static/images/logo.svg" alt="Home">
     </div>
-  </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero__image container container--pall">
-        <img src="../../static/images/logo.svg" alt="Home">
-      </div>
-
-      <div class="hero__text container--pall">
-        <h1>
-          Backend Developer <br> Who Love Black
-        </h1>
-        <p>
-            Ahmad Izzan Zahrial is a backend web developer who play with data and trying to make it into the real world step by step. Ps also loves to think.
-        </p>
-        <a href="#" class="button">Click Me</a>
-      </div>
+    <div class="hero__text container--pall">
+      <h1>
+        Backend Developer <br> Who Love Black
+      </h1>
+      <p>
+          Ahmad Izzan Zahrial is a backend web developer who play with data and trying to make it into the real world step by step. Ps also loves to think.
+      </p>
+      <a href="#" class="button">Click Me</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="skill container container--pall">
-    <h2>Skills</h2>
-    <div class="skill__grid container--pall">
-      <div class="skill__item">
-        <div class="skill__header">
-          <div class="skill__logo"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          <div class="skill__title">Framework</div>
-        </div>
-        <div class="skill__body">
-          <div class="skill__skills">
-            <div class="skill__title">Django</div>
-            <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Rasa</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Selenium</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-        </div>
+<section class="skill container container--pall" id="skill">
+  <h2>Skills</h2>
+  <div class="skill__grid container--pall">
+    <div class="skill__item">
+      <div class="skill__header">
+        <div class="skill__logo"><img src="{% static 'images/code-slash.svg' %}" alt="Language"></div>
+        <div class="skill__title">Language</div>
       </div>
-      <div class="skill__item">
-        <div class="skill__header">
-          <div class="skill__logo"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          <div class="skill__title">Framework</div>
+      <div class="skill__body">
+        <div class="skill__skills">
+          <div class="skill__title">Python</div>
+          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
-        <div class="skill__body">
-          <div class="skill__skills">
-            <div class="skill__title">Django</div>
-            <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Rasa</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Selenium</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
+        <div class="skill__skills">
+        <div class="skill__title">Javascript</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
-      </div>
-      <div class="skill__item">
-        <div class="skill__header">
-          <div class="skill__logo"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          <div class="skill__title">Framework</div>
+        <div class="skill__skills">
+        <div class="skill__title">C</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
-        <div class="skill__body">
-          <div class="skill__skills">
-            <div class="skill__title">Django</div>
-            <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Rasa</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Selenium</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-        </div>
-      </div>
-      <div class="skill__item">
-        <div class="skill__header">
-          <div class="skill__logo"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          <div class="skill__title">Framework</div>
-        </div>
-        <div class="skill__body">
-          <div class="skill__skills">
-            <div class="skill__title">Django</div>
-            <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Rasa</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
-          <div class="skill__skills">
-          <div class="skill__title">Selenium</div>
-          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
-          </div>
+        <div class="skill__skills">
+        <div class="skill__title">Html/ Css/ Sass</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="table container container--pall">
-    <h2>Projects</h2>
-    <div class="container container--pall">
-      <table class="table__all">
-        <thead class="table__heads">
-          <tr>
-            <th class="table__head"><p>Name</p></th>
-            <th class="table__head"><p>Description</p></th>
-            <th class="table__head"><p>Link</p></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="table__data"><p>Test name</p></td>
-            <td class="table__data"><p>Qui enim ad irure magna aliquip cupidatat. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></td>
-            <td><a href="#" class="button">Click</a></td>
-          </tr>
-          <tr>
-            <td class="table__data"><p>Test name</p></td>
-            <td class="table__data"><p>Qui enim ad irure magna aliquip cupidatat.</p></td>
-            <td><a href="#" class="button">Click</a></td>
-          </tr>
-          <tr>
-            <td class="table__data"><p>Test name</p></td>
-            <td class="table__data"><p>Qui enim ad irure magna aliquip cupidatat.</p></td>
-            <td><a href="#" class="button">Click</a></td>
-          </tr>
-          <tr>
-            <td class="table__data"><p>Test name</p></td>
-            <td class="table__data"><p>Qui enim ad irure magna aliquip cupidatat.</p></td>
-            <td><a href="#" class="button">Click</a></td>
-          </tr>
-          <tr>
-            <td class="table__data"><p>Test name</p></td>
-            <td class="table__data"><p>Qui enim ad irure magna aliquip cupidatat.</p></td>
-            <td><a href="#" class="button">Click</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="contact container container--pall">
-    <h2>Contact Me</h2>
-    <div class="contact__container">
-      <div class="contact__info container container--pall">
-        <div class="contact__box">
-          <div class="contact__icon"><img src="../../static/images/tools.svg" alt="Framework" class="skill__tools"></div>
-          <div class="contact__text">
-            <h3>Email</h3>
-            <p>izzanzahrial@outlook.com</p>
-          </div>
+    <div class="skill__item">
+      <div class="skill__header">
+        <div class="skill__logo"><img src="{% static 'images/terminal.svg' %}" alt="Framework"></div>
+        <div class="skill__title">Framework</div>
+      </div>
+      <div class="skill__body">
+        <div class="skill__skills">
+          <div class="skill__title">Django</div>
+          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
-        <div class="contact__box">
-          <div class="contact__icon"><img src="../../static/images/tools.svg" alt="Framework" class="skill__tools"></div>
-          <div class="contact__text">
-            <h3>Linkedin</h3>
-            <p>asdasdasdasdsadsadsadadassa</p>
-          </div>
+        <div class="skill__skills">
+        <div class="skill__title">Rasa</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
-        <div class="contact__box">
-          <div class="contact__icon"><img src="../../static/images/tools.svg" alt="Framework" class="skill__tools"></div>
-          <div class="contact__text">
-            <h3>Instagram</h3>
-            <p>@iizzan</p>
-          </div>
+        <div class="skill__skills">
+        <div class="skill__title">Selenium</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
+        <div class="skill__skills">
+        <div class="skill__title">Bootstrap</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
         </div>
       </div>
-      <div class="contact__form container">
-        <form action="#">
-          <div class="contact__formbox">
-            <input type="text" name="" required="required" placeholder="Your Name" class="field">
-            <input type="text" name="" required="required" placeholder="Your Email" class="field">
-            <textarea name="" id="" cols="30" rows="10" required="required" placeholder="Message" class="field"></textarea>
-            <input type="submit" name="" value="Send" class="field">
-          </div>
-        </form>
+    </div>
+    <div class="skill__item">
+      <div class="skill__header">
+        <div class="skill__logo"><img src="../../static/images/tools.svg" alt="Tools"></div>
+        <div class="skill__title">Tools</div>
+      </div>
+      <div class="skill__body">
+        <div class="skill__skills">
+          <div class="skill__title">Visual Studio</div>
+          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
+        <div class="skill__skills">
+        <div class="skill__title">Git/Github</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
+        <div class="skill__skills">
+        <div class="skill__title">Docker</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
       </div>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <a href="#" class="footer__logo">
-        <img src="../../static/images/logo.svg" alt="Home">
-      </a>
-  
-      <div class="footer__social">
-        <a href="#">
-          <img src="../../static/images/logo.svg" alt="Linkedin">
-        </a>
-        <a href="#">
-          <img src="../../static/images/logo.svg" alt="Github">
-        </a>
-        <a href="#">
-          <img src="../../static/images/logo.svg" alt="Leetcode">
-        </a>
-        <a href="#">
-          <img src="../../static/images/logo.svg" alt="Instagram">
-        </a>
-        <a href="#">
-          <img src="../../static/images/logo.svg" alt="Twitter">
-        </a>
+    <div class="skill__item">
+      <div class="skill__header">
+        <div class="skill__logo"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        <div class="skill__title">Database</div>
       </div>
-  
-      <div class="footer__links col1">
-        <a href="">About Me</a>
-        <a href="">Skills</a>
-        <a href="">Projects</a>
-        <a href="">Contact</a>
-      </div>
-  
-      <div class="footer__links col2">
-        <a href="">Blog</a>
-        <a href="">Register</a>
-        <a href="">Login</a>
-        <a href="">Category or Search</a>
-      </div>
-  
-      <div class="footer__cta">
-        <a href="" class="button">Click me</a>
-      </div>
-  
-      <div class="footer__copyright">
-        &copy; Izzanzahrial. All Rights Reserved.
+      <div class="skill__body">
+        <div class="skill__skills">
+          <div class="skill__title">Postgres</div>
+          <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
+        <div class="skill__skills">
+        <div class="skill__title">MySql</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
+        <div class="skill__skills">
+        <div class="skill__title">Sql</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
+        <div class="skill__skills">
+        <div class="skill__title">Database Design</div>
+        <div class="skill__icon"><img src="../../static/images/tools.svg" alt="Framework"></div>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+<section class="table container container--pall" id="projects">
+  <h2>Projects</h2>
+  <div class="container container--pall">
+    <table class="table__all">
+      <thead class="table__heads">
+        <tr>
+          <th class="table__head"><p>Name</p></th>
+          <th class="table__head"><p>Description</p></th>
+          {% comment %} <th class="table__head"><p>Created</p></th> {% endcomment %}
+          <th class="table__head"><p>Link</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for repository in repositories %}
+        <tr>
+          <td class="table__data"><p>{{ repository.repo_name|title }}</p></td>
+          <td class="table__data"><p>{{ repository.description }}</p></td>
+          {% comment %} <td class="table__data"><p>{{ repository.created_date }}</p></td> {% endcomment %}
+          <td><a href="{{ repository.url }}" class="button">Click</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<section class="contact container container--pall" id="contact">
+  <h2>Contact Me</h2>
+  <div class="contact__container">
+    <div class="contact__info container container--pall">
+      <div class="contact__box">
+        <div class="contact__icon"><img src="../../static/images/tools.svg" alt="Framework" class="skill__tools"></div>
+        <div class="contact__text">
+          <h3>Email</h3>
+          <p>izzanzahrial@outlook.com</p>
+        </div>
+      </div>
+      <div class="contact__box">
+        <div class="contact__icon"><img src="{% static 'images/linkedin.svg' %}" alt="Linkedin" class="skill__tools"></div>
+        <div class="contact__text">
+          <h3>Linkedin</h3>
+          <p>asdasdasdasdsadsadsadadassa</p>
+        </div>
+      </div>
+      <div class="contact__box">
+        <div class="contact__icon"><img src="{% static 'images/instagram.svg' %}" alt="Instagram" class="skill__tools"></div>
+        <div class="contact__text">
+          <h3>Instagram</h3>
+          <p>@iizzan</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact__form container">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="contact__formbox">
+          {{ form.name }}
+          {{ form.email }}
+          {{ form.message }}
+          <input type="submit" value="Send" class="field">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
-    <script src="../../static/js/script.js"></script>
-  </body>
-</html>
+{% include 'base/footer.html' %}
+
+{% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import delete_user, profile, accounts_registration, activate, edit, add_favourite, favourites_list, like
+from .views import delete_user, accounts_registration, activate, edit, add_favourite, favourites_list, like
 from .forms import PwdResetConfirmForm, PwdResetForm, UserLoginForm, PasswordChangeForm
 
 app_name = 'accounts'
@@ -25,10 +25,9 @@ urlpatterns = [
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name="registration/password_reset_form.html", form_class=PwdResetForm), name='pwdreset'),
     path('password_reset_confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="registration/password_reset_confirm.html", form_class=PwdResetConfirmForm), name='pwdresetconfirm'),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name="registration/password_change_form.html", form_class=PasswordChangeForm), name='pwdchange'),
-    path('profile/', profile, name='profile'),
-    path('profile/edit/', edit, name='edit'),
-    path('profile/delete/', delete_user, name='delete_user'),
-    path('profile/favourites/', favourites_list, name='favourites_list'),
+    path('edit/', edit, name='edit'),
+    path('delete/', delete_user, name='delete_user'),
+    path('favourites/', favourites_list, name='favourites_list'),
     path('like/', like, name='like'),
     path('fav/<int:id>/', add_favourite, name='add_favourite'),
     path('register/', accounts_registration, name='register'),

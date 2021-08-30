@@ -1,4 +1,13 @@
 .header {
+    size: 100%;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 
     &.open {
 
@@ -89,19 +98,122 @@
 
     &__links {
 
+        align-items: center;
+
+        .link {
+            
+            &:not(:last-child) {
+                margin-right: 32px;
+            }
+        }
+
         a {
             position: relative;
             font-size: $font-sm;
             color: $lightGrey;
             transition: color 300ms ease-in-out;
 
-            &:not(:last-child) {
-                margin-right: 32px;
+            &:hover {
+                color: $white;
             }
+        }
+    }
+
+    &__dropdown {
+        position: relative;
+        display: inline-block;
+
+        &.content {
+            position: absolute;
+            display: block;
+            visibility: hidden;
+            
+            a {
+                display: block;
+                font-size: $font-sm;
+                color: $lightGrey;
+                transition: color 300ms ease-in-out;
+                margin-top: 5px;
+    
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    &__input {
+        border: none;
+        -webkit-appearance: none;
+        -ms-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: $black;
+        color: $white;
+        border-radius: 1px;
+        width: 200px;
+        outline-color: $white;
+        margin-right: 5px;
+
+        input[type=text] {
+            color: $white;
+            font-size: $font-sm;
+        }
+
+        &:focus::placeholder {
+            color: transparent;
+        }
+
+        &::placeholder {
+            color: $grey;
+            transition: color 0.3s ease;
+            font-size: $font-sm;
+        }
+
+        &::-webkit-input-placeholder {
+            color: $grey;
+            transition: color 0.3s ease;
+            font-size: $font-sm;
+        }
+
+        &:-moz-placeholder {
+            color: $grey;
+            transition: color 0.3s ease;
+            font-size: $font-sm;
+        }
+
+        &::-moz-placeholder {
+            color: $grey;
+            transition: color 0.3s ease;
+            font-size: $font-sm;
+        }
+
+    }
+
+    &__button {
+        padding: 0px;
+    }
+
+    &__user {
+        list-style-type: none;
+        position: relative;
+        display: inline-block;
+
+        a {
+            font-size: $font-sm;
+            color: $lightGrey;
+            transition: color 300ms ease-in-out;
+            margin-top: 5px;
 
             &:hover {
                 color: $white;
             }
         }
+    }
+
+    &__dropdown_user {
+        visibility: hidden;
+        list-style-type: none;
+        position: absolute;
     }
 }

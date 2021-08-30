@@ -1,46 +1,48 @@
 {% extends '../base/base.html' %}
+
 {% block title %}
 <title>Favourites</title>
 {% endblock %}
+
 {% block content %}
-{% include 'base/navbar.html' %}
-<div class="container">
-    <section class="jumbotron text-center bg-white">
-        <div class="container">
-            <h1>User saved favourites post</h1>
-            <p class="lead text-muted">Here you can remove or view your favourites post
-            </p>
-            <p>
-                <a href="{% url 'logout' %}" class="btn btn-primary my-2">Logout</a>
-            </p>
-        </div>
-        <div>
-            <div class="row">
-                {% for post in favourites %}
-                <div class="col-md-4">
-                    <a href="{{ post.get_absolute_url }}" class="text-dark">
-                        <div class="card mb-4 box-shadow">
-                            {% if post.image.url is not None %}
-                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-img-top">
-                            {% endif %}
-                            <div class="card-body">
-                                <h2 style="font-size:18px;font-weight:bold">{{ post.title|truncatechars:50 }}</h2>
-                                <p class="card-text">Post snippet</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">{{ post.post_date }}</small>
-                                    <div id="favourites-section">
-                                        <a href="{% url 'accounts:add_favourite' post.id %}">Remove</a>
-                                    </div>
+
+{% include 'base/header.html' %}
+
+{% load static %}
+
+<div class="container text-center">
+    <h1>User saved favourites post</h1>
+</div>
+<section class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+        {{ favourites }}
+            {% for post in favourites %}
+            <div class="col-md-4">
+                <a href="{{ post.get_absolute_url }}" class="text-dark">
+                    <div class="card mb-4 box-shadow">
+                        {% if post.image.url is not None %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <p style="font-size:18px;font-weight:bold">{{ post.title|truncatechars:50 }}</p>
+                            <p class="card-text">{{ post.title_tag }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ post.post_date }}</small>
+                                <div id="favourites-section">
+                                    <a href="{% url 'accounts:add_favourite' post.id %}">
+                                        <img src="{% static 'images/favourite-yes.svg' %}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </a>
-                </div>
-                {% endfor %}
+                    </div>
+                </a>
             </div>
+            {% endfor %}
         </div>
-    </section>
-</div>
+    </div>
+</section>
 
 {% include '../base/footer.html' %}
 {% endblock %}

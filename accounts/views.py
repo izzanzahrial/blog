@@ -57,7 +57,7 @@ def like(request):
 
 @login_required
 def favourites_list(request):
-    favourites = BlogPost.publiished.filter(favourites=request.user)
+    favourites = BlogPost.objects.filter(favourites=request.user)
     return render(request, 'accounts/favourites.html', {"favourites": favourites})
 
 @login_required
@@ -68,10 +68,6 @@ def add_favourite(request, id):
     else:
         post.favourites.add(request.user)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-@login_required
-def profile(request):
-    return render(request, 'accounts/profile.html', {'section': 'profile'})
 
 def accounts_registration(request):
     if request.method == "POST":

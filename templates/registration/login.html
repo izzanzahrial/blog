@@ -6,7 +6,7 @@
 
 {% if request.user.is_authenticated %}
     <script>
-        window.location.href = '{% url "accounts:profile" %}'
+        window.location.href = '{% url "blog:posts" %}'
     </script>
 {% endif %}
 
@@ -38,7 +38,7 @@
 
 </style>
 
-<div class="container-fluid">
+<div class="container-fluid" style="color: black">
     <div class="row no-gutter">
         <div class="col-md-6 bg-light">
             <div class="login d-flex align-items-center py-5">
@@ -64,13 +64,13 @@
                                 <button class="btn btn-dark btn-block py-2 mb-4 mt-5 font-weight-bold" type="submit" value="Log-in">Sign in</button>
 
                                 <hr class="mb-3">
-                                <p class="small text-center">By signing in into your account, you agree to Blog <a href="">Terms of Service</a>
-                                    and consent to our <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>. This site is not protected by reCAPTCHA
+                                <p class="small text-center">By signing in into your account, you agree to Blog <a href="" style="color: black">Terms of Service</a>
+                                    and consent to our <a href="" style="color: black">Cookie Policy</a> and <a href="" style="color: black">Privacy Policy</a>. This site is not protected by reCAPTCHA
                                     and is a personal website.
                                 </p>
                             </form>
                             <p class="small text-center pt-4">
-                                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                                <a href="{% url 'password_reset' %}" style="color: blue">Forgot Password?</a>
                             </p>
                             {% comment %} <p class="small text-center">
                                 <a href="{% url 'accounts:register' %}">Register</a>

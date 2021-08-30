@@ -6,14 +6,22 @@
 
 {% block content %}
 
-{% include 'base/navbar.html' %}
+{% include 'base/header.html' %}
+
+{% load humanize %}
+
+<div class="categories__title container">
+    <h1>List of {{ categories.category }} posts</h1>
+    <p>
+        {% with categories.posts.count as total_results %}
+            Found {{ total_results }} result{{ total_results|pluralize }}
+        {% endwith %}
+    </p>
+</div>
 
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-12 pb-5">
-                <h1>List of {{ categories.category }} posts</h1>
-            </div>
             {% for post in categories.posts %}
             <div class="col-md-4">
                 <a href="{{ post.get_absolute_url }}" class="text-dark">
@@ -22,10 +30,10 @@
                             <img src="{{ post.image.url }}" alt="Card image" class="card-img-top">
                         {% endif %}
                         <div class="card-body">
-                            <h2 style="font-size:18px;font-weight:bold">{{ post.title|truncatechars:50 }}</h2>
-                            <p class="card-text">{{ post.body|truncatechars:50 }}</p>
+                            <h2 class="card-title">{{ post.title|truncatechars:50 }}</h2>
+                            <p class="card-text">{{ post.body|truncatechars:50|safe }}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">9 mins</small>
+                                <small class="text-muted">{{ post.post_date|naturalday }}</small>
                             </div>
                         </div>
                     </div>

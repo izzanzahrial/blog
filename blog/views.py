@@ -1,19 +1,29 @@
+import time
 from django import forms
-from core.settings import URL
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import paginator
+# from core.settings import URL
 from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator
 from rest_framework import serializers, viewsets, status
 from rest_framework.response import Response
+from datetime import timedelta, date
 from .models import BlogPost, Category, Comment
 from .serializer import BlogPostSerializer, CategorySerializer
 from .forms import BlogPostForm, CommentForm, PostSearchForm
+from .decorator import allowed_users
 
 import requests
 
 # Create your views here.
-class BlogPostViewSet(viewsets.ViewSet):
+class BlogPostViewSet(LoginRequiredMixin, viewsets.ViewSet):
+    login_url = "/account/login/"
+    redirect_field_name = "login"
+
     def list(self, request):
         blogPosts = BlogPost.objects.all()
         serializer = BlogPostSerializer(blogPosts, many=True)
@@ -42,7 +52,10 @@ class BlogPostViewSet(viewsets.ViewSet):
         blogPost.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class CategoryViewSet(viewsets.ViewSet):
+class CategoryViewSet(LoginRequiredMixin, viewsets.ViewSet):
+    login_url = "/account/login/"
+    redirect_field_name = "login"
+    
     def list(self, request):
         category = Category.objects.all()
         serializer = CategorySerializer(category, many=True)
@@ -76,19 +89,30 @@ class CategoryListView(ListView):
     context_object_name = 'categories'
 
     def get_queryset(self):
+        # posts = BlogPost.objects.filter(category__name= self.kwargs['category'])
+        # posts_date = []
+
+        # # turn every post date into range from post created until now
+        # for post in posts:
+        #     posts_date.append(post_created(post.post_date))
+
         content = {
             'category': self.kwargs['category'],
-            'posts': BlogPost.objects.filter(category__name= self.kwargs['category'])
+            'posts': BlogPost.objects.filter(category__name= self.kwargs['category']),
+            # 'posts_date' : posts_date,
             #'posts': BlogPost.objects.filter(category__name= self.kwargs['category']).filter(status='published')
         }
         return content
 
 def blogPostsView(request):
 
-    posts = BlogPost.objects.all()
+    posts = BlogPost.objects.all().order_by('-id')
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    blogposts = paginator.get_page(page_number)
     #published_posts = BlogPost.publiished.all()
 
-    return render(request, 'blog/index.html', {"posts": posts})
+    return render(request, 'blog/blogpost.html', {"blogposts": blogposts})
 
 def postDetailView(request, post=None):
     
@@ -115,6 +139,8 @@ def postDetailView(request, post=None):
     
     return render(request, "blog/post.html", {"post": post, "comments": comments, "comment_form": comment_form, "fav":fav})
 
+@login_required
+@allowed_users(allowed_roles=['admin'])
 def blogPostFormView(request):
     
     #using API
@@ -155,3 +181,12 @@ def post_search(request):
             results = BlogPost.objects.filter(title__contains=q)
         
     return render(request, 'blog/search.html', {'form': form, 'q':q, 'results':results})
+
+# def post_created(post_date):
+#     today = date.today()
+#     days1 = (today.year * 365) + (today.month * 30) + today.day
+#     days2 = (int(post_date[9:]) *365) + (int(post_date[0:3]) * 30) + int(post_date[5:7])
+#     time1 = timedelta(days=days1)
+#     time2 = timedelta(days=days2)
+#     time = time1 - time2
+#     return time.days

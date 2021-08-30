@@ -1,0 +1,62 @@
+{% extends '../base/base.html' %}
+
+{% block title %}
+    <title>Blog Posts</title>
+{% endblock %}
+
+{% block content %}
+
+{% include 'base/header.html' %}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8">
+            {% for post in blogposts %}
+            <div class="post">
+                <div class="post__header">
+                    <h2>
+                        <a href="{{ post.get_absolute_url }}" class="title">{{ post.title }}</a>
+                    </h2>
+                </div>
+                <div class="post__body row justify-content-start">
+                    <div class="post__content col-8">
+                        <div class="post__title-tag"><p>{{ post.title_tag }}</p></div>
+                        <div class="post__date"><p>{{ post.post_date }}</p></div>
+                        <div class="post__category"><p>{{ post.category }}</p></div>
+                    </div>
+                    {% if post.image.url is not None %}
+                    <div class="post__image-container col-4">
+                        <a href="{{ post.get_absolute_url }}">
+                            <img class="post__image" src="../media/{{ post.image }}" alt="">
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="post__page">
+            {% comment %} {% if is_paginated %} {% endcomment %}
+                {% if blogposts.has_previous %}
+                    <a href="?page=1" class="button">first</a>
+                    <a href="?page={{ blogposts.previous_page_number }}" class="button">previous</a>
+                {% endif %}
+                {% for num in blogposts.paginator.page_range %}
+                    {% if blogposts.number == num %}
+                        <a href="?page={{ num }}" class="button" id="current-page">{{ num }}</a>
+                    {% elif num > blogposts.number|add:'-3' and num < blogposts.number|add:'3' %}
+                        <a href="?page={{ num }}" class="button">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if blogposts.has_next %}
+                    <a href="?page={{ blogposts.next_page_number }}" class="button">next</a>
+                    <a href="?page={{ blogposts.paginator.num_pages }}" class="button">last</a>
+                {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "base/footer.html" %}
+
+{% endblock %}

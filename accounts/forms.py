@@ -32,12 +32,6 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name']
-        widgets = {
-            "username": forms.TextInput(attrs={"class": "form-control mb-3", "placeholder": "Username"}),
-            "email": forms.EmailInput(attrs={"class": "form-control mb-3", "placeholder": "E-mail", "name": "email"}),
-            "password": forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}),
-            "password2": forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Repeat Password"}),
-        }
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
@@ -58,6 +52,17 @@ class RegistrationForm(forms.ModelForm):
         if password != password2:
             raise forms.ValidationError("Password doesn't match")
         return password2
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'Username'})
+        self.fields['email'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'E-mail', 'name': 'email', 'id': 'id_email'})
+        self.fields['password'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Password'})
+        self.fields['password2'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Repeat Password'})
 
 class PwdResetForm(PasswordResetForm):
     email = forms.EmailField(max_length=255, widget=forms.TextInput(attrs={"class": "form-control mb-3", "placeholder": "email", "id": "form-email"}))

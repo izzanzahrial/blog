@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     # Packages
     'django_celery_beat',
@@ -131,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
@@ -144,28 +145,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = 'accounts:profile'
+LOGIN_REDIRECT_URL = 'blog:posts'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'cadangan.gua.2020@gmail.com'
+EMAIL_HOST_PASSWORD = 'Disca21$'
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
-URL = "https://api.github.com/users/izzanzahrial/repos"
+URL = {"url":"https://api.github.com/users/izzanzahrial/repos"}
 
 # Still can't connect to the URL
-URL_POST_REQUEST = "http://host.dokcer.internal:8000/repository/api"
+URL_POST_REQUEST = "http://172.20.0.4:8000/repository/api"
 
 CELERY_BEAT_SCHEDULE = {
     "scheduled_task": {
-        "task": "repository.tasks.getRepo",
+        "task": "repository.tasks.get_repo",
         "schedule": crontab(minute=0, day_of_week=0),
-        "args": (URL, URL_POST_REQUEST),
+        "kwargs": (URL),
     },
 }
