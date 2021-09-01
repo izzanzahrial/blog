@@ -162,13 +162,13 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'asd'
-EMAIL_HOST_PASSWORD = 'asd'
+EMAIL_HOST_USER = 'YOUR_EMAIL' # OR EMAIL BACKUP, BETTER USE ENV
+EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD' # BETTER USE ENV
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
-URL = {"url":"https://api.github.com/users/izzanzahrial/repos"}
+URL = {"url":"YOUR_GIT_HUB_API_URL_REPOSITORY"}
 
 # Still can't connect to the URL
 URL_POST_REQUEST = "http://172.20.0.4:8000/repository/api"
