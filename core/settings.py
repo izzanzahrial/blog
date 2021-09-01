@@ -162,8 +162,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'cadangan.gua.2020@gmail.com'
-EMAIL_HOST_PASSWORD = 'Disca21$'
+EMAIL_HOST_USER = 'asd'
+EMAIL_HOST_PASSWORD = 'asd'
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
