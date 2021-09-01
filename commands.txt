@@ -27,3 +27,5 @@ sh = shell
 
 docker exec -it django_container /bin/bash:
 running command in container, cannot be used in alpine build. Instead use [docker exec -it django_app sh]
+
+test something
