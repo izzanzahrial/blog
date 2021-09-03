@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&!at-dyg742h$)xjy!r1av3ay(fsgtrs943wr!(k8cmj^-b9*7' # os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # For development use True
@@ -162,8 +162,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'cadangan.gua.2020@gmail.com' # os.environ.get('EMAIL_HOST_USER') # OR EMAIL BACKUP, BETTER USE ENV
-EMAIL_HOST_PASSWORD = 'DiscaIzzan' # os.environ.get('EMAIL_HOST_PASSWORD') # BETTER USE ENV
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER') # OR EMAIL BACKUP, BETTER USE ENV
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') # BETTER USE ENV
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
