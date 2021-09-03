@@ -11,5 +11,12 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 # Configure server with commands
-RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt 
+RUN pip install --default-timeout=100 -r requirements.txt
+
+# docker hub stuff
+# EXPOSE 8000
+
+# CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "core.wsgi:application"]
+
+# heroku stuff
+#CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT

@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&!at-dyg742h$)xjy!r1av3ay(fsgtrs943wr!(k8cmj^-b9*7'
+SECRET_KEY = '&!at-dyg742h$)xjy!r1av3ay(fsgtrs943wr!(k8cmj^-b9*7' # os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False # For development use True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # os.environ.get('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -156,19 +156,19 @@ LOGIN_REDIRECT_URL = 'blog:posts'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-#
+# DJANGO MAIL
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'YOUR_EMAIL' # OR EMAIL BACKUP, BETTER USE ENV
-EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD' # BETTER USE ENV
+EMAIL_HOST_USER = 'cadangan.gua.2020@gmail.com' # os.environ.get('EMAIL_HOST_USER') # OR EMAIL BACKUP, BETTER USE ENV
+EMAIL_HOST_PASSWORD = 'DiscaIzzan' # os.environ.get('EMAIL_HOST_PASSWORD') # BETTER USE ENV
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
-URL = {"url":"YOUR_GIT_HUB_API_URL_REPOSITORY"}
+URL = {"url":"https://api.github.com/users/izzanzahrial/repos"}
 
 # Still can't connect to the URL
 URL_POST_REQUEST = "http://172.20.0.4:8000/repository/api"
