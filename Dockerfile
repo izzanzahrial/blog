@@ -11,7 +11,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 # Configure server with commands
-RUN pip install --default-timeout=100 -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # docker hub stuff
 # EXPOSE 8000
