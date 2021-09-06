@@ -1,4 +1,5 @@
 #My commands
+docker build --tag="name_of_the_image:version" directory(use .)
 docker-compose build
 docker-compose run --rm app django-admin startproject core[name of the project] .
 docker-compose up
@@ -27,3 +28,13 @@ sh = shell
 
 docker exec -it django_container /bin/bash:
 running command in container, cannot be used in alpine build. Instead use [docker exec -it django_app sh]
+
+# Heroku commands
+heroku container:login // login to heroku
+heroku create // create app in heroku
+heroku container:push web -a=your-app-name // Push your app to the heroku app
+heroku config:add YOUR_KEY_ENV_VARIABLE=YOUR_VALUE_ENV_VARIABLE -a your-app-name // Add config env variable to heruko
+heroku config:get YOUR_KEY_ENV_VARIABLE // To look at your env variable in heroku
+heroku container:release -a your-app-name web // Release your heroku app
+heroku logs --tail -a your-app-name // Back end logs from heroku
+heroku open -a your-app-name // Open your heroku app

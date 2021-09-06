@@ -11,9 +11,9 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 # Configure server with commands
-RUN set -ex \
-    && pip install --upgrade pip \
-    && pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
+
+COPY . .
 
 # docker hub stuff
 # EXPOSE 8000
@@ -21,4 +21,4 @@ RUN set -ex \
 # CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "core.wsgi:application"]
 
 # heroku stuff
-#CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
