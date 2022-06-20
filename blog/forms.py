@@ -11,6 +11,7 @@ class BlogPostForm(forms.ModelForm):
             "title_tag": forms.TextInput(attrs={"class": ""}),
             "body": forms.Textarea(attrs={"class": ""}),
             "category": forms.TextInput(attrs={"class": ""}),
+            "image": forms.ImageField()
         }
 
 class CommentForm(forms.ModelForm):
