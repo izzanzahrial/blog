@@ -7,6 +7,7 @@ docker exec -it core[name of the container] /bin/bash
 docker exec -it core[name of the container] sh
 python manage.py startapp blog[name of the app]
 python manage.py migrate
+python manage.py collectstatic
 flower -A core[name of directory that celery located] --port=5555
 celery -A core beat -l INFO
 
@@ -38,3 +39,4 @@ heroku config:get YOUR_KEY_ENV_VARIABLE // To look at your env variable in herok
 heroku container:release -a your-app-name web // Release your heroku app
 heroku logs --tail -a your-app-name // Back end logs from heroku
 heroku open -a your-app-name // Open your heroku app
+heroku run python manage.py migrate
