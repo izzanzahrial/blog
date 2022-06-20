@@ -1,0 +1,30 @@
+.post {
+
+    &__title {
+        margin-bottom: 0px;
+    }
+
+    &__title-tag {
+        width: auto;
+    }
+
+    &__title-tag-1 {
+        margin-right: 5px;
+    }
+
+    &__icon {
+        filter: invert(97%) sepia(3%) saturate(4%) hue-rotate(221deg) brightness(115%) contrast(100%);
+
+        &:hover {
+            filter: invert(54%) sepia(1%) saturate(296%) hue-rotate(16deg) brightness(93%) contrast(92%);
+        }
+    }
+
+    &__icon-like {
+        filter: invert(97%) sepia(3%) saturate(4%) hue-rotate(221deg) brightness(115%) contrast(100%);
+
+        &:hover {
+            filter: invert(80%) sepia(16%) saturate(857%) hue-rotate(305deg) brightness(103%) contrast(102%);
+        }
+    }
+}

@@ -1,0 +1,83 @@
+.skill {
+
+    h2 {
+        
+        @include breakpoint-down(medium) {
+            text-align: center;
+        }
+
+        @include breakpoint-up(large) {
+            margin-left: 50px;
+        }
+    }
+
+    &__grid {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__item {
+        padding: 0.9375rem;
+
+        @include breakpoint-up(medium) {
+            flex: 0 0 50%;
+            width: 253px;
+            height: 196px;
+        }
+
+        @include breakpoint-up(large) {
+            flex: 1;
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: baseline;
+        
+        @include breakpoint-down(medium) {
+            justify-content: center;
+        }
+    }
+
+    &__logo {
+        filter: invert(97%) sepia(3%) saturate(4%) hue-rotate(221deg) brightness(115%) contrast(100%);
+        margin-bottom: 1.675rem;
+
+        @include breakpoint-up(large) {    
+            margin-left: 15px;
+        }
+    }
+
+    &__title {
+        font-size: 0.9rem;
+        font-weight: 300;
+        line-height: 1.15;
+        margin-bottom: 0.8rem;
+        margin-left: 0.5rem;
+    }
+
+    &__body {
+        
+        @include breakpoint-down(medium) {
+            text-align: center;
+        }
+    }
+
+    &__skills {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    &__icon {
+        filter: invert(97%) sepia(3%) saturate(4%) hue-rotate(221deg) brightness(115%) contrast(100%);
+        margin-bottom: 0.8rem;
+        
+        @include breakpoint-up(large) {
+            margin-right: 0.5rem;
+        }
+    }
+}
